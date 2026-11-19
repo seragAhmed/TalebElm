@@ -51,7 +51,7 @@ The milestone names above match the GitHub milestones (`M0` through `M5`). Every
 
 ### Progression unlock rule
 
-A Module unlocks its successor if and only if both its exam gate and its problem gate hold, evaluated inside an atomic UnitOfWork transaction as specified in [Decision 32](../OPEN_DECISIONS.md) and [Business Rule P-2](BUSINESS_RULES.md#6-progress-tracking-unlock).
+A Module unlocks its successor if and only if both its exam gate and its problem gate hold, evaluated inside an atomic UnitOfWork transaction as specified in [Decision 32](../OPEN_DECISIONS.md) and [Business Rule P-2](BUSINESS_RULES.md#6-progress-tracking--unlock).
 
 ---
 

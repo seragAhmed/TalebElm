@@ -19,11 +19,28 @@ PRIVATE_WORKSPACE = ".local"  # public docs must never mention this folder
 
 
 def gh_slug(text: str) -> str:
-    # GitHub heading slug rules (lowercase, punctuation dropped, spaces -> -)
+    # GitHub heading slug rules: lowercase, drop punctuation, then turn each
+    # space into "-". Runs are kept, so "a & b" becomes "a--b", not "a-b".
     s = text.strip().lower()
-    s = re.sub(r"[^\w\s-]", "", s)
-    s = re.sub(r"\s+", "-", s)
+    s = re.sub(r"[^\w\- ]", "", s)
+    s = s.replace(" ", "-")
     return s
+
+
+# Headings with the anchors GitHub generates for them. The script fails if
+# gh_slug disagrees, so a wrong slug can't make broken links look valid.
+GH_SLUG_EXAMPLES = {
+    "6. Progress tracking & unlock": "6-progress-tracking--unlock",
+    "Reads / writes": "reads--writes",
+    "3.2 Codeforces Problem Solve Verification Flow": "32-codeforces-problem-solve-verification-flow",
+    "`IUnitOfWork` contract": "iunitofwork-contract",
+    "snake_case and kebab-case": "snake_case-and-kebab-case",
+}
+
+for heading, expected in GH_SLUG_EXAMPLES.items():
+    actual = gh_slug(heading)
+    if actual != expected:
+        errors.append(f"scripts/check-docs.py: gh_slug({heading!r}) returned {actual!r}, expected {expected!r}")
 
 
 def strip_frontiers(line: str) -> bool:

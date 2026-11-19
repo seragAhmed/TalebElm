@@ -40,7 +40,7 @@ flowchart LR
 
 ## Progression unlock rule
 
-A module unlocks its successor if and only if both its exam gate and its problem gate hold, evaluated inside an atomic transaction as specified in the [business rules](docs/business/BUSINESS_RULES.md#6-progress-tracking-unlock) (rule P-2) and [architectural decisions](docs/OPEN_DECISIONS.md):
+A module unlocks its successor if and only if both its exam gate and its problem gate hold, evaluated inside an atomic transaction as specified in the [business rules](docs/business/BUSINESS_RULES.md#6-progress-tracking--unlock) (rule P-2) and [architectural decisions](docs/OPEN_DECISIONS.md):
 
 ```text
 examGate    = !hasExam || PassedExam
